@@ -3,9 +3,8 @@ import { Header } from "./Header/Header";
 import { StoriesList } from "./StoriesList/StoriesList";
 import { Story } from "../types";
 import { UpdateButton } from "./UpdateButton/UpdateButton";
-import { Loader } from "../Loader/Loader";
-import styles from "./MainPage.module.css";
 import { useFetchData } from "../hoc/useFetchData";
+import { LoaderAndError } from "../LoaderAndError/LoaderAndError";
 
 export const MainPage = () => {
   const [shouldFetch, setShouldFetch] = useState<boolean>(true);
@@ -31,9 +30,12 @@ export const MainPage = () => {
   return (
     <>
       <Header />
-      <div className={styles.loader}>
-        <Loader isShow={isLoading} size={80} />
-      </div>
+      <LoaderAndError
+        errorText="Failed to load news."
+        loaderSize={80}
+        showError={error}
+        showLoader={isLoading}
+      />
       {data.length > 0 && <StoriesList stories={data} />}
       <UpdateButton onUpdate={() => setShouldFetch(true)} />
     </>

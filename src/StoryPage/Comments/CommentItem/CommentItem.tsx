@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { FaUser } from "react-icons/fa6";
 import { CommentInfo } from "../../../types";
 import parse from "html-react-parser";
-import { Loader } from "../../../Loader/Loader";
 import styles from "./CommentsItem.module.css";
 import { useFetchData } from "../../../hoc/useFetchData";
+import { LoaderAndError } from "../../../LoaderAndError/LoaderAndError";
+import { Author } from "../../../Author/Author";
 
 interface CommentItemProps {
   comment: CommentInfo;
@@ -12,7 +12,7 @@ interface CommentItemProps {
 
 export const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
   const [shouldFetch, setShouldFetch] = useState<boolean>(false);
-  const { data, isLoading } = useFetchData<CommentInfo[]>({
+  const { data, isLoading, error } = useFetchData<CommentInfo[]>({
     dataType: "comments",
     shouldFetch: shouldFetch,
     id: comment.id,
@@ -34,13 +34,15 @@ export const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
     <>
       <li className={styles.comment}>
         <div onClick={() => setShouldFetch(true)}>
-          <div className={styles.comment_by}>
-            <FaUser color="gray" />
-            {<span>{comment.by}</span>}
-          </div>
+          <Author name={comment.by} textColor="#696e30"/>
           <span>{parse(comment.text)}</span>
         </div>
-        <Loader isShow={isLoading} size={20} />
+        <LoaderAndError
+          errorText="Failed to load comments."
+          loaderSize={20}
+          showError={error}
+          showLoader={isLoading}
+        />
         {data.length > 0 && (
           <ul className={styles.comment_ul}>
             {data.map((el) => (

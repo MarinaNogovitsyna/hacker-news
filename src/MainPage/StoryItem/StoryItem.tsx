@@ -1,9 +1,9 @@
 import React from 'react'
 import { Story } from '../../types'
 import styles from './StoryItem.module.css'
-import { FaUser } from "react-icons/fa6";
 import { FaComments } from "react-icons/fa";
 import { getDate, getTime } from '../../utils/getDate';
+import { Author } from '../../Author/Author';
 
 interface StoryItemProps {
     story: Story;
@@ -23,10 +23,7 @@ export const StoryItem: React.FC<StoryItemProps> = ({story, handleClick}) => {
         <span className={styles.story_title}>{story.title}</span>
         <span className={getRatingColor()}>{story.score}</span>
       </div>
-      <div className={styles.story_autor}>
-        <FaUser color='gray'/>
-        <span>{story.by}</span>
-      </div>
+      <Author name={story.by}/>
       <div className={styles.story_comments_and_date}>
         <div className={styles.story_comments}>
           <FaComments color='gray'/>

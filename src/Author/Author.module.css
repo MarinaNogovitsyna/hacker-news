@@ -1,0 +1,9 @@
+.author {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.author span {
+    font-weight: 500;
+}

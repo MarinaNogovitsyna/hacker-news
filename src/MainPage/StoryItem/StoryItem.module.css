@@ -46,7 +46,7 @@
     background: #89d991;
 }
 
-.story_autor, .story_comments {
+.story_comments {
     display: flex;
     gap: 8px;
     align-items: center;
