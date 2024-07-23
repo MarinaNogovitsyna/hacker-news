@@ -1,0 +1,64 @@
+.story {
+    width: 45%;
+    border: 2px solid black;
+    box-sizing: border-box;
+    padding: 20px 15px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.story_title_and_rating {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.story_title {
+    font-weight: 700;
+    font-size: 20px;
+    max-width: 90%;
+}
+
+.rating {
+    border-radius: 0 0 0 7px;
+    width: 50px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.rating_bad {
+    background: #ed858c;
+}
+
+.rating_normal {
+    background: #ccbf49;
+}
+
+.rating_good {
+    background: #89d991;
+}
+
+.story_autor, .story_comments {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.story_comments_and_date {
+    display: flex;
+    justify-content: space-between;
+}
+
+.story_date {
+    font-style: italic;
+    color: gray;
+}
+
