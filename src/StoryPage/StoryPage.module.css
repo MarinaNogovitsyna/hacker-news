@@ -1,0 +1,38 @@
+.story_container {
+    width: 90%;
+    margin: 50px auto;
+}
+
+.story_title_and_date {
+    display: flex;
+    justify-content: space-between;
+}
+
+.story_title_and_date > h3 {
+    font-size: 30px;
+    max-width: 80%;
+}
+
+.story_title_and_date > span {
+    font-style: italic;
+    color: gray;
+}
+
+.story_url {
+    display: block;
+    width: max-content;
+    text-decoration: none;
+    color: black;
+    background: #bfc29d;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+.story_url:hover {
+    transform: scale(1.1);
+    transition: all 0.5s ease;
+    background-color: #dee0bf;
+}

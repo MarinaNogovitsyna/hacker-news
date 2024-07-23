@@ -1,0 +1,20 @@
+.comment {
+    background: #ededed;
+    padding: 15px;
+    list-style: none;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+.comment_by {
+    display: flex;
+    gap: 10px;
+    color: #696e30;
+    font-weight: 500;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.comment svg:last-child {
+    margin: 10px 0 0 30px;
+}
