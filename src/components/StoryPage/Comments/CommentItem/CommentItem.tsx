@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { CommentInfo } from "../../../types";
+import { CommentInfo } from "../../../../types";
 import parse from "html-react-parser";
 import styles from "./CommentsItem.module.css";
-import { useFetchData } from "../../../hoc/useFetchData";
-import { LoaderAndError } from "../../../LoaderAndError/LoaderAndError";
+import { useFetchData } from "../../../../hoc/useFetchData";
+import { LoaderAndError } from "../../../Loadind/LoaderAndError/LoaderAndError";
 import { Author } from "../../../Author/Author";
 
 interface CommentItemProps {

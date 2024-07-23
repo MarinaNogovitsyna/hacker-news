@@ -1,8 +1,8 @@
 import React from 'react'
-import { Story } from '../../types'
+import { Story } from '../../../types'
 import styles from './StoryItem.module.css'
 import { FaComments } from "react-icons/fa";
-import { getDate, getTime } from '../../utils/getDate';
+import { getDate, getTime } from '../../../utils/getDate';
 import { Author } from '../../Author/Author';
 
 interface StoryItemProps {

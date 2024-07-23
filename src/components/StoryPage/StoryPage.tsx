@@ -1,10 +1,10 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Story } from "../types";
-import { getDate, getTime } from "../utils/getDate";
 import { FaUser } from "react-icons/fa6";
-import { Back } from "./Back/Back";
 import styles from "./StoryPage.module.css";
+import { Back } from "./Back/Back";
+import { getDate, getTime } from "../../utils/getDate";
+import { Story } from "../../types";
 import { CommentsBlock } from "./Comments/CommentsBlock";
 
 export const StoryPage = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Story } from "../../types";
+import { Story } from "../../../types";
 import styles from "./StoriesList.module.css";
 import { StoryItem } from "../StoryItem/StoryItem";
 import { useLocation, useNavigate } from "react-router-dom";

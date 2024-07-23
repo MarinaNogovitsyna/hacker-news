@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FaComments } from "react-icons/fa";
 import { RxUpdate } from "react-icons/rx";
 import styles from "./CommentsBlock.module.css";
-import { Loader } from "../../Loader/Loader";
+import { Loader } from "../../Loadind/Loader/Loader";
 import { CommentsList } from "./CommentsList/CommentsList";
-import { CommentInfo } from "../../types";
-import { useFetchData } from "../../hoc/useFetchData";
-import { LoaderAndError } from "../../LoaderAndError/LoaderAndError";
+import { CommentInfo } from "../../../types";
+import { useFetchData } from "../../../hoc/useFetchData";
+import { LoaderAndError } from "../../Loadind/LoaderAndError/LoaderAndError";
 
 interface CommentsBlockProps {
   id: number;

@@ -1,6 +1,6 @@
 import React from "react";
 import { CommentItem } from "../CommentItem/CommentItem";
-import { CommentInfo } from "../../../types";
+import { CommentInfo } from "../../../../types";
 import styles from "./CommentaList.module.css";
 
 interface CommentsListProps {

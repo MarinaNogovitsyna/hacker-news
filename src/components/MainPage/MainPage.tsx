@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Header } from "./Header/Header";
 import { StoriesList } from "./StoriesList/StoriesList";
-import { Story } from "../types";
+import { Story } from "../../types";
 import { UpdateButton } from "./UpdateButton/UpdateButton";
-import { useFetchData } from "../hoc/useFetchData";
-import { LoaderAndError } from "../LoaderAndError/LoaderAndError";
+import { useFetchData } from "../../hoc/useFetchData";
+import { LoaderAndError } from "../Loadind/LoaderAndError/LoaderAndError";
 
 export const MainPage = () => {
   const [shouldFetch, setShouldFetch] = useState<boolean>(true);

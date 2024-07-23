@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { MainPage } from './MainPage/MainPage';
-import { StoryPage } from './StoryPage/StoryPage';
+import { MainPage } from './components/MainPage/MainPage';
+import { StoryPage } from './components/StoryPage/StoryPage';
 
 function App() {
   return (
