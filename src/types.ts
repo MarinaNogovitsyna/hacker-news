@@ -18,4 +18,5 @@ export interface CommentInfo {
   text: string;
   time: number;
   type: string;
+  deleted?: boolean;
 }

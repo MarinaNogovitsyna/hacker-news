@@ -18,3 +18,8 @@
 .comment svg:last-child {
     margin: 10px 0 0 30px;
 }
+
+.comment_deleted {
+    color: red;
+    font-style: italic;
+}

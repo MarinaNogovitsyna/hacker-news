@@ -1,60 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa6";
 import { CommentInfo } from "../../../types";
 import parse from "html-react-parser";
 import { Loader } from "../../../Loader/Loader";
-import styles from './CommentsItem.module.css'
+import styles from "./CommentsItem.module.css";
+import { useFetchData } from "../../../hoc/useFetchData";
 
 interface CommentItemProps {
   comment: CommentInfo;
 }
 
 export const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
-  const [nestedComments, setNestedComments] = useState<CommentInfo[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [shouldFetch, setShouldFetch] = useState<boolean>(false);
+  const { data, isLoading } = useFetchData<CommentInfo[]>({
+    dataType: "comments",
+    shouldFetch: shouldFetch,
+    id: comment.id,
+  });
 
-  const handleClick = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(
-        `https://hacker-news.firebaseio.com/v0/item/${comment.id}.json`
-      );
-      const commentResponse = await response.json();
-      if (commentResponse.kids?.length) {
-        const commentsPromises = commentResponse.kids.map((id: number) =>
-          fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(
-            (res) => res.json()
-          )
-        );
-        const comments: CommentInfo[] = await Promise.all(commentsPromises);
-        setNestedComments(comments); 
-      }
-    } catch (err) {
-      setError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  useEffect(() => {
+    setShouldFetch(false);
+  }, [isLoading, data]);
+
+  if (comment.deleted && !comment.text) {
+    return (
+      <li className={styles.comment}>
+        <span className={styles.comment_deleted}>Comment is deleted</span>
+      </li>
+    );
+  }
+
   return (
     <>
-    {comment.text && <li className={styles.comment}>
-      <div onClick={handleClick}>
-        <div className={styles.comment_by}>
-          <FaUser color="gray" />
-          {<span>{comment.by}</span>}
+      <li className={styles.comment}>
+        <div onClick={() => setShouldFetch(true)}>
+          <div className={styles.comment_by}>
+            <FaUser color="gray" />
+            {<span>{comment.by}</span>}
+          </div>
+          <span>{parse(comment.text)}</span>
         </div>
-        <span>{parse(comment.text)}</span>
-      </div>
-      <Loader isShow={isLoading} size={20} />
-      {nestedComments.length > 0 && (
-        <ul className={styles.comment_ul}>
-          {nestedComments.map((el) => (
-            <CommentItem key={el.id} comment={el} />
-          ))}
-        </ul>
-      )}
-    </li>}
+        <Loader isShow={isLoading} size={20} />
+        {data.length > 0 && (
+          <ul className={styles.comment_ul}>
+            {data.map((el) => (
+              <CommentItem key={el.id} comment={el} />
+            ))}
+          </ul>
+        )}
+      </li>
     </>
   );
 };

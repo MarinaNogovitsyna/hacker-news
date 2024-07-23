@@ -1,52 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Header } from "./Header/Header";
 import { StoriesList } from "./StoriesList/StoriesList";
 import { Story } from "../types";
 import { UpdateButton } from "./UpdateButton/UpdateButton";
 import { Loader } from "../Loader/Loader";
-import styles from './MainPage.module.css'
+import styles from "./MainPage.module.css";
+import { useFetchData } from "../hoc/useFetchData";
 
 export const MainPage = () => {
-    const [stories, setStories] = useState<Story[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<boolean>(false);
-  
-    const fetchStories = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
-        const storyIds = await response.json();
-        const storyPromises = storyIds.slice(0, 100).map((id: number) =>
-          fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) =>
-            res.json()
-          )
-        );
-        const stories = await Promise.all(storyPromises);
-        console.log(stories);
-        
-        setStories(stories);
-      } catch (err) {
-        setError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const [shouldFetch, setShouldFetch] = useState<boolean>(true);
+  const { data, isLoading, error } = useFetchData<Story[]>({
+    dataType: "stories",
+    shouldFetch: shouldFetch,
+  });
 
   useEffect(() => {
-    fetchStories();
-    const interval = setInterval(fetchStories, 60000);
+    const interval = setInterval(() => {
+      setShouldFetch(true);
+    }, 60000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
+
+  useEffect(() => {
+    setShouldFetch(false);
+  }, [isLoading, data]);
 
   return (
     <>
       <Header />
       <div className={styles.loader}>
-        <Loader isShow={isLoading} size={80}/>
+        <Loader isShow={isLoading} size={80} />
       </div>
-      <StoriesList stories={stories}/>
-      <UpdateButton onUpdate={fetchStories}/>
+      {data.length > 0 && <StoriesList stories={data} />}
+      <UpdateButton onUpdate={() => setShouldFetch(true)} />
     </>
   );
 };
