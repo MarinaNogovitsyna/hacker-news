@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CommentInfo } from "../../../../types";
 import parse from "html-react-parser";
 import styles from "./CommentsItem.module.css";
-import { useFetchData } from "../../../../hoc/useFetchData";
+import { useFetchData } from "../../../../hooc/useFetchData";
 import { LoaderAndError } from "../../../Loadind/LoaderAndError/LoaderAndError";
 import { Author } from "../../../Author/Author";
 

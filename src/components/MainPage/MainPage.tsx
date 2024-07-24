@@ -3,7 +3,7 @@ import { Header } from "./Header/Header";
 import { StoriesList } from "./StoriesList/StoriesList";
 import { Story } from "../../types";
 import { UpdateButton } from "./UpdateButton/UpdateButton";
-import { useFetchData } from "../../hoc/useFetchData";
+import { useFetchData } from "../../hooc/useFetchData";
 import { LoaderAndError } from "../Loadind/LoaderAndError/LoaderAndError";
 
 export const MainPage = () => {

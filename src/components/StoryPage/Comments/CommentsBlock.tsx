@@ -5,7 +5,7 @@ import styles from "./CommentsBlock.module.css";
 import { Loader } from "../../Loadind/Loader/Loader";
 import { CommentsList } from "./CommentsList/CommentsList";
 import { CommentInfo } from "../../../types";
-import { useFetchData } from "../../../hoc/useFetchData";
+import { useFetchData } from "../../../hooc/useFetchData";
 import { LoaderAndError } from "../../Loadind/LoaderAndError/LoaderAndError";
 
 interface CommentsBlockProps {
