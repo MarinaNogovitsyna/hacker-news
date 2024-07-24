@@ -37,3 +37,25 @@
   font-size: 20px;
   padding-left: 6px;
 }
+
+
+@media (max-width: 700px) {
+  .logo {
+    font-size: 60px;
+  }
+  .description {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo {
+    font-size: 44px;
+  }
+  .description {
+    font-size: 14px;
+  }
+  .header {
+    height: 200px;
+  }
+}
