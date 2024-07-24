@@ -6,6 +6,7 @@ import { Back } from "./Back/Back";
 import { getDate, getTime } from "../../utils/getDate";
 import { Story } from "../../types";
 import { CommentsBlock } from "./Comments/CommentsBlock";
+import { Author } from "../Author/Author";
 
 export const StoryPage = () => {
   const location = useLocation();
@@ -18,10 +19,7 @@ export const StoryPage = () => {
         <h3>{story.title}</h3>
         <span>{getDate(story.time) + " " + getTime(story.time)}</span>
       </div>
-      <div>
-        <FaUser color="gray" />
-        <span>{story.by}</span>
-      </div>
+      <Author name={story.by}/>
       <a href={story.url} target="blank" className={styles.story_url}>
         Go to news
       </a>

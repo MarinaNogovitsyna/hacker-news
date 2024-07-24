@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Story } from "../../../types";
 import styles from "./StoriesList.module.css";
 import { StoryItem } from "../StoryItem/StoryItem";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface StoriesListProps {
   stories: Story[];
@@ -13,7 +13,8 @@ export const StoriesList: React.FC<StoriesListProps> = ({ stories }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const sort = stories.sort((a, b) => b.time - a.time);
+    const filterStories = stories.filter(el => !!el)
+    const sort = filterStories.sort((a, b) => b.time - a.time);
     setSortStories(sort);
   }, [stories]);
 
